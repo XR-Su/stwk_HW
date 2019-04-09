@@ -1,0 +1,42 @@
+.global-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: #F3F3F3;
+
+  .global-header {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    border-bottom: 1px solid #ccc;
+    background-color: white;
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      height: 55px;
+      width: 1200px;
+
+      .left,.right,.center {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+  .global-main {
+    display: flex;
+    flex: 1;
+    width: 1200px;
+
+    .global-sider {
+      width: 205px;
+      background-color: #2d4054;
+    }
+    .global-content {
+      flex: 1;
+      background-color: #ccc;
+    }
+  }
+}

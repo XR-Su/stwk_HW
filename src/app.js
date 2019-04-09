@@ -7,6 +7,7 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import Agent from './Pages/AGENT'
+import Page from './page.js'
+import './style/index.less'
 
-ReactDOM.render(<Agent />, document.getElementById("root"));
+ReactDOM.render(<Page />, document.getElementById("root"));
