@@ -8,21 +8,45 @@
     display: flex;
     justify-content: space-between;
     .card {
-      display: inline-block;
       padding: 10px 8px;
-      width: 204px;
-      height: 92px;
+      width: 280px;
+      height: 120px;
     }
     .view-card {
       .card;
+      display: flex;
+      overflow: hidden;
+      justify-content: space-between;
       .title {
         color: white;
         font: 18px bold;
+      }
+      .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 144px;
+        //margin-top: -30px;
+        //margin-left: -100px;
+        color: rgba(255, 255, 255, 0.2);
+
+      }
+      .icon-cog {
+        transform-origin: center center;
+        animation: anim 2s linear infinite;
       }
       .count {
         text-align: right;
         color: white;
         font-size: 45px;
+      }
+      @keyframes anim {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
       }
     }
     .count-card {
@@ -54,141 +78,150 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    .filter {
+  }
+}
+.agent-content-filter {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  background-color: white;
+  .left {
+    display: flex;
+    align-items: center;
+    .item {
+      display: inline-block;
+      text-align: center;
+      padding: 0 16px;
+      height: 50px;
+      line-height: 50px;
+      border-bottom: 3px solid transparent;
+      border-right: 1px solid #eee;
+      cursor: pointer;
+      min-width: 70px;
+    }
+    .item-active {
+      .item;
+      color: @TIPS_COLOR;
+      border-bottom: 3px solid @TIPS_COLOR;
+      transition: all 0.6s;
+    }
+    .search-filter {
+      margin-left: 24px;
+      .icon-search {
+        font-size: 18px;
+        color: rgb(153, 153, 153);
+        margin-right: 6px;
+      }
+      .cruise-input,
+      .cruise-input-wrapper {
+        background-color: @MAIN_GRAY;
+      }
+    }
+  }
+}
+.agent-content-list {
+  flex: 1;
+  margin-top: 14px;
+  height: 1px;
+  overflow: auto;
+  .list-card {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background-color: white;
+    margin-top: 10px;
+    font-size: 14px;
+
+    .os-icon {
+      padding: 10px;
+      .image {
+        height: 80px;
+      }
+    }
+    .detail {
       display: flex;
-      justify-content: space-between;
-      margin-top: 12px;
-      background-color: white;
-      .left {
+      flex-direction: column;
+      flex: 1;
+
+      .info {
         display: flex;
+        flex: 1;
         align-items: center;
         .item {
-          display: inline-block;
-          text-align: center;
-          padding: 0 16px;
-          height: 50px;
-          line-height: 50px;
-          border-bottom: 3px solid transparent;
-          border-right: 1px solid #eee;
-          cursor: pointer;
-          min-width: 70px;
-        }
-        .item-active {
-          .item;
-          color: @TIPS_COLOR;
-          border-bottom: 3px solid @TIPS_COLOR;
-          transition: all 0.6s;
-        }
-        .search-filter {
-          margin-left: 24px;
-          .icon-search {
-            font-size: 18px;
-            color: rgb(153, 153, 153);
-            margin-right: 6px;
-          }
-          .cruise-input,.cruise-input-wrapper {
-            background-color: @MAIN_GRAY;
-          }
-        }
-      }
-    }
-    .list {
-      flex: 1;
-      margin-top: 14px;
-      height: 1px;
-      overflow: auto;
-      .list-card {
-        display: flex;
-        width: 100%;
-        height: 100px;
-        background-color: white;
-        margin-top: 10px;
-        font-size: 14px;
-
-        >.left {
-          padding: 10px;
-          .image {
-            height: 80px;
-          }
-        }
-        >.right {
           display: flex;
-          flex-direction: column;
-          flex: 1;
-
-          .top {
-            display: flex;
-            flex: 1;
-            align-items: center;
-            .item {
-              display: flex;
-              align-items: center;
-              margin-right: 20px;
-              .icon {
-                font-size: 16px;
-                color: #ccc;
-                margin-right: 10px;
-              }
-            }
-            .item-name {
-              color: @MAIN_BLUE;
-            }
-            .item-tag {
-              padding: 2px 4px;
-              color: white;
-            }
-            .item-building {
-              background-color: rgb(255, 154, 24);
-            }
-            .item-idle {
-              background-color: rgb(127, 188, 57);
+          align-items: center;
+          margin-right: 20px;
+          .icon {
+            font-size: 16px;
+            color: #ccc;
+            margin-right: 10px;
+          }
+        }
+        .item-name {
+          color: @MAIN_BLUE;
+        }
+        .item-tag {
+          padding: 2px 4px;
+          color: white;
+        }
+        .item-building {
+          background-color: rgb(255, 154, 24);
+        }
+        .item-idle {
+          background-color: rgb(127, 188, 57);
+        }
+      }
+      .operation {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex: 1;
+        .button {
+          display: flex;
+          align-items: center;
+          height: 26px;
+          padding: 0px 6px;
+          cursor: pointer;
+        }
+        .operation-os {
+          display: flex;
+          align-items: center;
+          .add-button {
+            .button;
+            color: white;
+            background-color: @BUTTON_COLOR;
+            font-size: 18px;
+          }
+          .resource-button {
+            margin-left: 6px;
+            .icon-trash {
+              margin-left: 4px;
             }
           }
-          .bottom {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex: 1;
-            .button {
-              display: flex;
-              align-items: center;
-              height: 26px;
-              padding: 0px 6px;
-              cursor: pointer;
-            }
-            .left {
-              display: flex;
-              align-items: center;
-              .add-button {
-                .button;
-                color: white;
-                background-color: @BUTTON_COLOR;
-                font-size: 18px;
-              }
-              .resource-button {
-                .button;
-                background-color: @SHALLOW_GRAY;
-                margin-left: 6px;
-                .icon-trash {
-                  margin-left: 4px;
-                }
-              }
-            }
-            .right {
-              display: flex;
-              .deny-button {
-                .button;
-                color:white;
-                background-color: @BUTTON_COLOR;
-                margin-right: 20px;
-                .icon-deny {
-                  margin-right: 4px;
-                }
-              }
+        }
+        .operation-deny {
+          display: flex;
+          .deny-button {
+            .button;
+            margin-right: 20px;
+            .icon-deny {
+              margin-right: 4px;
             }
           }
         }
       }
     }
+  }
+}
+
+.add-dialog-content {
+  width: 570px;
+  color: #aaa;
+  .title {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  .cruise-input-wrapper {
+    margin-bottom: 12px;
   }
 }

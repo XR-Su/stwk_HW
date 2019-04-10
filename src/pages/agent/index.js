@@ -9,7 +9,7 @@ import React, { Component } from "react";
 import Header from "./components/agentHeader";
 import Content from "./components/agentContent";
 import { StoreProvider } from "./context/storeContext";
-import { GetAgentList } from "./api";
+import { GetAgentList, GetAgentOne, ChangeOneAgent } from "./api";
 
 export default class extends Component {
   state = {
@@ -23,8 +23,9 @@ export default class extends Component {
   };
   render() {
     const { agentList } = this.state;
+    const { getAgentList } = this;
     return (
-      <StoreProvider value={{ agentList: agentList }}>
+      <StoreProvider value={{ ...{ agentList, getAgentList } }}>
         <div className="agent">
           <Header />
           <Content />

@@ -8,5 +8,5 @@ import React from 'react'
 import {StoreConsumer} from '../context/storeContext'
 
 export default Component => () => (<StoreConsumer>
-    {data => <Component data={data}/>}
+    {store => <Component store={store}/>}
 </StoreConsumer>)

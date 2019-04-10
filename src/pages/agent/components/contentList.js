@@ -7,11 +7,11 @@
 import React, { Component } from "react";
 import ListCard from "./listCard";
 
-export default ({ list }) => {
+export default ({ list, changeOneAgent }) => {
   return (
-    <div className="list">
+    <div className="agent-content-list">
       {list.map(item => (
-        <ListCard {...item} key={item.id}/>
+        <ListCard {...{changeOneAgent,item}} key={item.id}/>
       ))}
     </div>
   );

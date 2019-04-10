@@ -35,7 +35,7 @@ export default class extends Component {
   render() {
     const { onFilter } = this.props;
     return (
-      <div className="filter">
+      <div className="agent-content-filter">
         <div className="left">
           <div>{this.getFilterOptions()}</div>
           <div className="search-filter">

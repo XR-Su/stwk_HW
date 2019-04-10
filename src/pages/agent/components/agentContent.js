@@ -15,8 +15,9 @@ class AgentContent extends Component {
     id: ""
   };
   getList = () => {
+    console.log(this.props)
     const { type, id } = this.state;
-    const { agentList } = this.props.data;
+    const { agentList } = this.props.store;
     let res;
     res = id === "" ? agentList : agentList.filter(item => item.id == id);
     res =
@@ -30,10 +31,11 @@ class AgentContent extends Component {
   };
   render() {
     const { getList, onFilter } = this;
+    const {changeOneAgent} = this.props.store
     return (
       <div className="content">
         <Filter {...{ onFilter }} />
-        <List list={getList()} />
+        <List list={getList()} {...{changeOneAgent}} />
       </div>
     );
   }

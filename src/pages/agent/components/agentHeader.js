@@ -12,8 +12,8 @@ export default class extends Component {
   render() {
     return (
       <div className="header">
-        <ViewCard bgColor="#FF9A2A" title="Building" count="3"/>
-        <ViewCard bgColor="#7FBC39" title="Idle" count="5"/>
+        <ViewCard bgColor="#FF9A2A" title="Building" count="3" icon="icon-cog"/>
+        <ViewCard bgColor="#7FBC39" title="Idle" count="5" icon="icon-coffee"/>
         <CountCard all={8} physical={4} virtual={4}/>
       </div>
     );
