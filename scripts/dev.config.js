@@ -9,6 +9,12 @@ module.exports = {
     filename: '[name].js',
     path: path.resolve(__dirname, '../dist'),
   },
+  resolve: {
+    alias: {
+      Components: path.resolve(__dirname, '../src/components/'),
+      Assets: path.resolve(__dirname, '../assets/')
+    }
+  },
   module: {
     rules: [
       {
@@ -34,7 +40,26 @@ module.exports = {
             noIeCompat: true
           }
         }]
-      }
+      },
+      {
+        test: /\.(woff|eot|ttf|svg|png|jpg|gif)$/,
+        use: {
+          loader: 'file-loader',
+          options: {}
+        }
+      },
+      // {
+      //   test: /\.($/,
+      //   use: [
+      //     {
+      //       loader: 'url-loader',
+      //       options: {
+      //         limit: 50000, //小于50K的 都打包
+      //         name: '[hash:8].[name].[ext]'
+      //       }
+      //     }
+      //   ]
+      // }
     ]
   },
   devServer: {

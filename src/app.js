@@ -9,5 +9,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Page from './page.js'
 import './style/index.less'
+import '../assets/fonts/fonts.css'
 
 ReactDOM.render(<Page />, document.getElementById("root"));

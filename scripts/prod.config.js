@@ -10,6 +10,11 @@ const config = {
     path: path.resolve(__dirname, '../dist'),
     libraryTarget: 'commonjs2' // 这个配置项的默认参数是 'var'，我们需要改成 commonjs2，这样可以通过模块系统引入这个组件。
   },
+  resolve: {
+    alias: {
+      Components: path.resolve(__dirname, '../src/components/')
+    }
+  },
   module: {
     rules: [
       {

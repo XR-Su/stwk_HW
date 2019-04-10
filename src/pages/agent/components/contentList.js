@@ -4,12 +4,15 @@
  * @author RiSusss
  * @date 2019-04-09
  */
-import React, {Component} from 'react'
+import React, { Component } from "react";
+import ListCard from "./listCard";
 
-export default class extends Component {
-    render() {
-        return (
-            <div>list</div>
-        )
-    }
-}
+export default ({ list }) => {
+  return (
+    <div className="list">
+      {list.map(item => (
+        <ListCard {...item} key={item.id}/>
+      ))}
+    </div>
+  );
+};
