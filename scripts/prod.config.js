@@ -10,7 +10,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, "../dist"),
     filename: "static/js/[name].[chunkhash:8].js",
-    chunkFilename: '[name].[chunkhash:5].chunk.js'
+    chunkFilename: 'static/js/[name].[chunkhash:5].chunk.js'
   },
   resolve: {
     alias: {
@@ -26,7 +26,10 @@ const config = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env"]
+            presets: ["@babel/preset-env"],
+            plugins: [
+              "dynamic-import-webpack"
+            ]
           }
         }
       },
