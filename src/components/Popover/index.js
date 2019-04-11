@@ -11,8 +11,8 @@ import { Button } from "Components";
 export default class Popover extends Component {
   state = {
     visible: false,
-    popupX: 0,
-    popupY: 0
+    popoverX: 0,
+    popoverY: 0
   };
 
   static getDerivedStateFromProps(nextProps, preState) {
@@ -23,71 +23,73 @@ export default class Popover extends Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener("click", this.hidePopup);
+    document.removeEventListener("click", this.hidePopover);
   }
 
-  handleClickPopup = e => {
+  handleClickPopover = e => {
     e.nativeEvent.stopImmediatePropagation();
   };
-  showPopup = e => {
+  showPopover = e => {
     const rect = e.getBoundingClientRect();
     this.setState(preState => ({
       visible: true,
-      popupX: rect.x + -14 + "px",
-      popupY: rect.y + rect.height + 16 + "px"
+      popoverX: rect.x + -14 + "px",
+      popoverY: rect.y + rect.height + 16 + "px"
     }));
-    document.addEventListener("click", this.hidePopup);
+    document.addEventListener("click", this.hidePopover);
   };
-  hidePopup = () => {
+  hidePopover = () => {
     this.setState(preState => ({ visible: false }));
-    document.removeEventListener("click", this.hidePopup);
+    document.removeEventListener("click", this.hidePopover);
   };
   renderChild = () => {
     const child = this.props.children;
     const res = React.cloneElement(child, {
-      onClick: () => this.showPopup(this.childNode),
+      onClick: () => this.showPopover(this.childNode),
       ref: node => {
         this.childNode = node;
       }
     });
     return res;
   };
-  renderPopover = () => {
-    const { visible, popupX, popupY } = this.state;
-    const { onOk, onCancel } = this.props;
-    const display = visible ? "block" : "none";
-    const arraw = <span className="arrow"/>
-    const header = (
-      <div className="header">
-        <i className="icon-close" onClick={this.hidePopup} />
-      </div>
-    );
-    const footer = (
+  renderPopoverHeader = () => (
+    <div className="header">
+      <i className="icon-close" onClick={this.hidePopover} />
+    </div>
+  );
+  renderPopoverFooter = () => {
+    const { onOk, onCancel, okText, cancelText } = this.props;
+    return (
       <div>
         <Button type="primary" onClick={onOk}>
-          {this.props.okText || "Ok"}
+          {okText || "Ok"}
         </Button>
-        <Button type="cancel" onClick={onCancel || this.hidePopup}>
-          {this.props.cancelText || "Cancel"}
+        <Button type="cancel" onClick={onCancel || this.hidePopover}>
+          {cancelText || "Cancel"}
         </Button>
       </div>
     );
-    const content = this.props.content;
+  };
+  renderPopover = () => {
+    const { visible, popoverX, popoverY } = this.state,
+      { content } = this.props,
+      display = visible ? "block" : "none",
+      arrow = <span className="arrow" />;
     return (
       <div className="cruise-popover-wrapper">
         <div
           className="cruise-popover"
-          onClick={this.handleClickPopup}
+          onClick={this.handleClickPopover}
           style={{
             display: display,
-            left: popupX,
-            top: popupY
+            left: popoverX,
+            top: popoverY
           }}
         >
-          {arraw}
-          {header}
+          {arrow}
+          {this.renderPopoverHeader()}
           {content}
-          {footer}
+          {this.renderPopoverFooter()}
         </div>
       </div>
     );

@@ -15,7 +15,6 @@ class AgentContent extends Component {
     id: ""
   };
   getList = () => {
-    console.log(this.props)
     const { type, id } = this.state;
     const { agentList } = this.props.store;
     let res;
@@ -33,7 +32,7 @@ class AgentContent extends Component {
     const { getList, onFilter } = this;
     const {changeOneAgent} = this.props.store
     return (
-      <div className="content">
+      <div className="agent-content">
         <Filter {...{ onFilter }} />
         <List list={getList()} {...{changeOneAgent}} />
       </div>

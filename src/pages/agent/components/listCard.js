@@ -19,19 +19,19 @@ export default class extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      agentData: {...props.item}
+      agentData: { ...props.item },
+      inputResources: ""
     };
-    this.inputValue = "";
   }
   handleAddResources = () => {
-    const { agentData } = this.state,
-      resources = this.inputValue.split(","),
+    const { agentData, inputResources } = this.state,
+      resources = inputResources.split(","),
       body = {
         ...agentData,
         resources: [...agentData.resources, ...resources]
       };
     ChangeOneAgent(body.id, body).then(() => {
-      this.setState({ agentData: body });
+      this.setState({ agentData: body, inputResources: "" });
     });
   };
   handleDeleteResources = resource => {
@@ -45,15 +45,19 @@ export default class extends Component {
       this.setState({ agentData: body });
     });
   };
+  onChangeInput = val => {
+    this.setState(preState => ({ inputResources: val }));
+  };
   render() {
-    const { agentData } = this.state;
+    const { agentData, inputResources } = this.state;
     const { name, location, ip, os, status, resources } = agentData;
     const addDiaContent = (
       <div className="add-dialog-content">
         <p className="title">Separate multiple resource name with commas</p>
         <Input
+          value={inputResources}
           placeholder="Input value"
-          onChange={val => (this.inputValue = val)}
+          onChange={val => this.onChangeInput(val)}
         />
       </div>
     );
@@ -91,14 +95,14 @@ export default class extends Component {
               </Popover>
               <div>
                 {resources.map(item => (
-                    <Button
-                        className="resource-button"
-                        key={item}
-                        onClick={() => this.handleDeleteResources(item)}
-                    >
-                      {item}
-                      <i className="icon-trash" />
-                    </Button>
+                  <Button
+                    className="resource-button"
+                    key={item}
+                    onClick={() => this.handleDeleteResources(item)}
+                  >
+                    {item}
+                    <i className="icon-trash" />
+                  </Button>
                 ))}
               </div>
             </div>
