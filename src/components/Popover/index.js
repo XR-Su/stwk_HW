@@ -31,10 +31,11 @@ export default class Popover extends Component {
   };
   showPopover = e => {
     const rect = e.getBoundingClientRect();
+    console.log(rect)
     this.setState(preState => ({
       visible: true,
-      popoverX: rect.x + -14 + "px",
-      popoverY: rect.y + rect.height + 16 + "px"
+      popoverX: rect.left + -14 + "px",
+      popoverY: rect.top + rect.height + 16 + "px"
     }));
     document.addEventListener("click", this.hidePopover);
   };
