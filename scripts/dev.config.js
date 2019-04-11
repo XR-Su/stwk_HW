@@ -1,10 +1,16 @@
 const webpack = require('webpack')
+const WebpackDevServer = require('webpack-dev-server')
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const autoprefixer = require('autoprefixer')
 
-module.exports = {
+const config = {
   mode: 'development',
-  entry: './src/app.js',
+  entry: [
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/dev-server',
+    './src/app.js'
+  ],
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, '../dist'),
@@ -19,8 +25,13 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        use: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader?cacheDirectory=true',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
       },
       {
         test: /\.css$/,
@@ -35,9 +46,15 @@ module.exports = {
         }, {
           loader: "css-loader"
         }, {
+          loader: 'postcss-loader',
+          options: {
+            plugins: () => [autoprefixer({ browsers: 'last 5 versions' })],
+            sourceMap: true,
+          },
+        }, {
           loader: "less-loader", options: {
-            strictMath: true,
-            noIeCompat: true
+            // strictMath: true,
+            // noIeCompat: true
           }
         }]
       },
@@ -47,24 +64,8 @@ module.exports = {
           loader: 'file-loader',
           options: {}
         }
-      },
-      // {
-      //   test: /\.($/,
-      //   use: [
-      //     {
-      //       loader: 'url-loader',
-      //       options: {
-      //         limit: 50000, //小于50K的 都打包
-      //         name: '[hash:8].[name].[ext]'
-      //       }
-      //     }
-      //   ]
-      // }
+      }
     ]
-  },
-  devServer: {
-    hot: true,
-    contentBase: './dist'
   },
   plugins: [
     new htmlWebpackPlugin({
@@ -74,3 +75,10 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
   ],
 };
+
+const server = new WebpackDevServer(webpack(config),{
+  hot: true,
+  contentBase: './dist'
+})
+
+server.listen(8080)

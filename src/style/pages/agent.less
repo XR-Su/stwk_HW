@@ -4,7 +4,7 @@
   flex-direction: column;
   height: 100%;
 
-  .header {
+  .agent-header {
     display: flex;
     justify-content: space-between;
     .card {
@@ -77,8 +77,10 @@
   }
   .agent-content {
     display: flex;
+    //flex: 1;
     flex-direction: column;
-    flex: 1;
+    height: calc(~'100vh - 200px');
+    //height: 1px;
   }
 }
 .agent-content-filter {
@@ -86,7 +88,7 @@
   justify-content: space-between;
   margin-top: 12px;
   background-color: white;
-  .left {
+  .filters {
     display: flex;
     align-items: center;
     .item {
@@ -121,92 +123,93 @@
   }
 }
 .agent-content-list {
-  flex: 1;
   margin-top: 14px;
-  height: 1px;
-  overflow: auto;
-  .list-card {
-    display: flex;
-    width: 100%;
-    height: 100px;
-    background-color: white;
-    margin-top: 10px;
-    font-size: 14px;
-
-    .os-icon {
-      padding: 10px;
-      .image {
-        height: 80px;
-      }
-    }
-    .detail {
+  overflow-y: auto;
+  .agent-content-list-container{
+    .list-card {
       display: flex;
-      flex-direction: column;
-      flex: 1;
+      width: 100%;
+      height: 100px;
+      background-color: white;
+      margin-top: 10px;
+      font-size: 14px;
 
-      .info {
-        display: flex;
-        flex: 1;
-        align-items: center;
-        .item {
-          display: flex;
-          align-items: center;
-          margin-right: 20px;
-          .icon {
-            font-size: 16px;
-            color: #ccc;
-            margin-right: 10px;
-          }
-        }
-        .item-name {
-          color: @MAIN_BLUE;
-        }
-        .item-tag {
-          padding: 2px 4px;
-          color: white;
-        }
-        .item-building {
-          background-color: rgb(255, 154, 24);
-        }
-        .item-idle {
-          background-color: rgb(127, 188, 57);
+      .os-icon {
+        padding: 10px;
+        .image {
+          height: 80px;
         }
       }
-      .operation {
+      .detail {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
+        flex-direction: column;
         flex: 1;
-        .button {
+
+        .info {
           display: flex;
+          flex: 1;
           align-items: center;
-          height: 26px;
-          padding: 0px 6px;
-          cursor: pointer;
-        }
-        .operation-os {
-          display: flex;
-          align-items: center;
-          .add-button {
-            .button;
-            color: white;
-            background-color: @BUTTON_COLOR;
-            font-size: 18px;
-          }
-          .resource-button {
-            margin-left: 6px;
-            .icon-trash {
-              margin-left: 4px;
+          .item {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            .icon {
+              font-size: 16px;
+              color: #ccc;
+              margin-right: 10px;
             }
           }
+          .item-name {
+            color: @MAIN_BLUE;
+          }
+          .item-tag {
+            padding: 2px 4px;
+            color: white;
+          }
+          .item-building {
+            background-color: rgb(255, 154, 24);
+          }
+          .item-idle {
+            background-color: rgb(127, 188, 57);
+          }
         }
-        .operation-deny {
+        .operation {
           display: flex;
-          .deny-button {
-            .button;
-            margin-right: 20px;
-            .icon-deny {
-              margin-right: 4px;
+          align-items: center;
+          justify-content: space-between;
+          flex: 1;
+          .button {
+            display: flex;
+            align-items: center;
+            height: 26px;
+            padding: 0px 6px;
+            cursor: pointer;
+          }
+          .operation-os {
+            display: flex;
+            align-items: center;
+            .add-button {
+              .button;
+              color: white;
+              background-color: @BUTTON_COLOR;
+              font-size: 18px;
+              line-height: 26px;
+            }
+            .resource-button {
+              margin-left: 6px;
+              .icon-trash {
+                margin-left: 4px;
+              }
+            }
+          }
+          .operation-deny {
+            display: flex;
+            .deny-button {
+              .button;
+              margin-right: 20px;
+              .icon-deny {
+                margin-right: 4px;
+              }
             }
           }
         }

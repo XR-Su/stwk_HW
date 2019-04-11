@@ -41,7 +41,7 @@ export default class extends Component {
       { searchText } = this.state;
     return (
       <div className="agent-content-filter">
-        <div className="left">
+        <div className="filters">
           <div>{this.getFilterOptions()}</div>
           <div className="search-filter">
             <Input
@@ -52,7 +52,7 @@ export default class extends Component {
             />
           </div>
         </div>
-        <div className="right" />
+        <div className="layouts" />
       </div>
     );
   }

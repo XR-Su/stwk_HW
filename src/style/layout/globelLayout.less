@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
 
   .global-header {
     display: flex;
@@ -19,11 +19,14 @@
       height: 55px;
       width: 1200px;
 
-      .left,.right,.center {
+      .other,
+      .global-header-title,
+      .global-header-user {
         display: flex;
-        align-items: center;
+        flex: 1;
       }
-      .center {
+      .global-header-title {
+        justify-content: center;
         .logo {
           display: inline-block;
           width: 60px;
@@ -32,17 +35,41 @@
           background-size: contain;
         }
       }
-      .right {
+      .global-header-user {
+        align-items: center;
+        justify-content: flex-end;
         .user-info {
-          background-color: red;
-          width: 40px;
-          height: 40px;
-          border-radius: 20px;
+          display: flex;
+          align-items: center;
+          position: relative;
           cursor: pointer;
-        }
-        .user-info-panel {
-          display: inline-block;
-          width: 176px;
+          .user-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            margin-right: 10px;
+          }
+          .user-info-panel {
+            position: absolute;
+            top: 50px;
+            right: 0px;
+            text-align: left;
+            background-color: white;
+            width: 160px;
+            max-height: 0;
+            transition: max-height 0.4s;
+            overflow: hidden;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+          }
+          .icon-angle-down {
+            font-size: 18px;
+            color: #aaa;
+          }
+          &:hover {
+            .user-info-panel {
+              max-height: 130px;
+            }
+          }
         }
       }
     }
@@ -58,7 +85,6 @@
     }
     .global-content {
       flex: 1;
-      background-color: #ccc;
     }
   }
 }

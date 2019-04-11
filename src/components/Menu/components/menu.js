@@ -10,7 +10,7 @@ import MenuItem from "./menuItem";
 
 class Menu extends Component {
   state = {
-    cur: 'agent'
+    cur: "agent"
   };
   onChangeCur = val => {
     console.log("onchange");
@@ -24,12 +24,13 @@ class Menu extends Component {
       return React.cloneElement(child, {
         cur: this.state.cur,
         onChangeCur: this.onChangeCur,
-          itemKey: itemKey
+        itemKey: itemKey
       });
     });
   };
   render() {
-    return <ul className="cruise-menu">{this.renderChildren()}</ul>;
+    const theme = this.props.theme || "normal";
+    return <ul className={`cruise-menu ${theme}`}>{this.renderChildren()}</ul>;
   }
 }
 

@@ -4,13 +4,16 @@
  * @author RiSusss
  * @date 2019-04-09
  */
-import React, {Component} from 'react'
-import Auth from './auth'
+import React, { Component, Fragment } from "react";
+import { Redirect } from "react-router-dom";
 
 export default class extends Component {
-    render() {
-        return (
-            <div></div>
-        )
-    }
+  state = {
+    logged: true
+  };
+  render() {
+    const { logged } = this.state,
+      { children } = this.props;
+    return <Fragment>{logged ? children : <Redirect to="/login" />}</Fragment>;
+  }
 }

@@ -23,7 +23,7 @@ export default class extends Component {
         {/*<Link to="/shoelaces">Shoelaces</Link>*/}
         {/*</li>*/}
         {/*</ul>*/}
-        <Menu>
+        <Menu theme="dark">
           <Menu.Item key="dashboard" title={<i className="icon-dashboard" />}>
             <Link to="/dashbord">DASHBOARD</Link>
           </Menu.Item>

@@ -51,7 +51,7 @@ class AgentHeader extends Component {
       virtualCount
     } = this.getCardData();
     return (
-      <div className="header">
+      <div className="agent-header">
         <ViewCard
           bgColor="#FF9A2A"
           title="Building"

@@ -10,9 +10,11 @@ import ListCard from "./listCard";
 export default ({ list, changeOneAgent }) => {
   return (
     <div className="agent-content-list">
-      {list.map(item => (
-        <ListCard {...{changeOneAgent,item}} key={item.id}/>
-      ))}
+      <div className="agent-content-list-container">
+        {list.map(item => (
+          <ListCard {...{changeOneAgent,item}} key={item.id}/>
+        ))}
+      </div>
     </div>
   );
 };
