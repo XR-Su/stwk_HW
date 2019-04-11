@@ -4,10 +4,10 @@
  * @author RiSusss
  * @date 2019-04-09
  */
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Input } from "Components";
 
-export default class extends Component {
+export default class extends PureComponent {
   state = {
     cur: "All",
     filterOptions: ["All", "Physical", "Virtual"],

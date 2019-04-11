@@ -4,11 +4,11 @@
  * @author RiSusss
  * @date 2019-04-10
  */
-import React, { Component, Fragment } from "react";
+import React, { PureComponent, Fragment } from "react";
 import { createPortal } from "react-dom";
 import { Button } from "Components";
 
-export default class Popover extends Component {
+export default class Popover extends PureComponent {
   state = {
     visible: false,
     popoverX: 0,

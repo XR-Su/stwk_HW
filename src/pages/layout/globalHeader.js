@@ -9,7 +9,6 @@ import UserInfoPanel from "./userInfoPanel";
 
 class GlobalHeader extends Component {
   render() {
-    console.log(this);
     return (
       <div className="global-header">
         <div className="container">

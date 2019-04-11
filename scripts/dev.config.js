@@ -1,24 +1,25 @@
-const webpack = require('webpack')
-const WebpackDevServer = require('webpack-dev-server')
-const path = require('path');
-const htmlWebpackPlugin = require('html-webpack-plugin');
-const autoprefixer = require('autoprefixer')
+const webpack = require("webpack");
+const WebpackDevServer = require("webpack-dev-server");
+const path = require("path");
+const htmlWebpackPlugin = require("html-webpack-plugin");
+const autoprefixer = require("autoprefixer");
 
 const config = {
-  mode: 'development',
+  mode: "development",
   entry: [
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/dev-server',
-    './src/app.js'
+    "webpack-dev-server/client?http://localhost:8080",
+    "webpack/hot/dev-server",
+    "./src/app.js"
   ],
   output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, '../dist'),
+    filename: "[name].js",
+    path: path.resolve(__dirname, "../dist"),
+    chunkFilename: '[name].[chunkhash:5].chunk.js'
   },
   resolve: {
     alias: {
-      Components: path.resolve(__dirname, '../src/components/'),
-      Assets: path.resolve(__dirname, '../assets/')
+      Components: path.resolve(__dirname, "../src/components/"),
+      Assets: path.resolve(__dirname, "../assets/")
     }
   },
   module: {
@@ -27,41 +28,50 @@ const config = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader?cacheDirectory=true',
+          loader: "babel-loader?cacheDirectory=true",
           options: {
-            presets: ['@babel/preset-env']
+            presets: ["@babel/preset-env"],
+            plugins: [
+              "dynamic-import-webpack"
+            ]
           }
         }
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ["style-loader", "css-loader"]
       },
       {
         test: /\.less$/,
         exclude: /node_modules/,
-        use: [{
-          loader: "style-loader",
-          options: { singleton: true }
-        }, {
-          loader: "css-loader"
-        }, {
-          loader: 'postcss-loader',
-          options: {
-            plugins: () => [autoprefixer({ browsers: 'last 5 versions' })],
-            sourceMap: true,
+        use: [
+          {
+            loader: "style-loader",
+            options: { singleton: true }
           },
-        }, {
-          loader: "less-loader", options: {
-            // strictMath: true,
-            // noIeCompat: true
+          {
+            loader: "css-loader"
+          },
+          {
+            loader: "postcss-loader",
+            options: {
+              plugins: () => [autoprefixer({ browsers: "last 5 versions" })],
+              sourceMap: true
+            }
+          },
+          {
+            loader: "less-loader",
+            options: {
+              // strictMath: true,
+              // noIeCompat: true
+            }
           }
-        }]
+        ]
       },
       {
         test: /\.(woff|eot|ttf|svg|png|jpg|gif)$/,
         use: {
-          loader: 'file-loader',
+          loader: "file-loader",
           options: {}
         }
       }
@@ -69,16 +79,16 @@ const config = {
   },
   plugins: [
     new htmlWebpackPlugin({
-      template: 'public/index.html'
+      template: "public/index.html"
     }),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-  ],
+    new webpack.HotModuleReplacementPlugin()
+  ]
 };
 
-const server = new WebpackDevServer(webpack(config),{
+const server = new WebpackDevServer(webpack(config), {
   hot: true,
-  contentBase: './dist'
-})
+  contentBase: "./dist"
+});
 
-server.listen(8080)
+server.listen(8080);

@@ -5,10 +5,10 @@
  * @date 2019/4/11
  */
 
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import MenuItem from "./menuItem";
 
-class Menu extends Component {
+class Menu extends PureComponent {
   state = {
     cur: "agent"
   };
@@ -18,7 +18,6 @@ class Menu extends Component {
     this.setState(preState => ({ cur: val }));
   };
   renderChildren = () => {
-    console.log(this.props.children);
     return React.Children.map(this.props.children, (child, index) => {
       const itemKey = child.key;
       return React.cloneElement(child, {

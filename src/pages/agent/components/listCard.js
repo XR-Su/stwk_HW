@@ -4,7 +4,7 @@
  * @author RiSusss
  * @date 2019-04-10
  */
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Popover, Input, Button } from "Components";
 import windows from "Assets/os_icons/windows.png";
 import centos from "Assets/os_icons/cent_os.png";
@@ -15,7 +15,7 @@ import { ChangeOneAgent } from "../api";
 
 const icons = { ...{ windows, centos, debian, suse, ubuntu } };
 
-export default class extends Component {
+export default class extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
