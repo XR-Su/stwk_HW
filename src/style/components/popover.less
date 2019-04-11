@@ -11,9 +11,9 @@
     border: 1px solid;
     border-color: @MAIN_BLUE @MAIN_BLUE transparent @MAIN_BLUE;
     box-shadow: 0 3px 5px rgba(0,0,0,0.3);
-    .arrow {
+    .arrow-top {
       position: absolute;
-      top: -30px; left: 20px;
+      top: -28px; left: 20px;
       border-style: solid;
       border-width: 14px 6px;
       border-color: transparent transparent @MAIN_BLUE transparent;
@@ -24,6 +24,21 @@
         border-style: solid;
         border-width: 14px 6px;
         border-color: transparent transparent white transparent;
+      }
+    }
+    .arrow-bottom {
+      position: absolute;
+      bottom: -29px; left: 20px;
+      border-style: solid;
+      border-width: 14px 6px;
+      border-color: @MAIN_BLUE transparent transparent transparent;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -12px; left: -6px;
+        border-style: solid;
+        border-width: 14px 6px;
+        border-color: white transparent transparent transparent;
       }
     }
     .header {

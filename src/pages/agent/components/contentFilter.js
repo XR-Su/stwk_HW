@@ -52,7 +52,10 @@ export default class extends Component {
             />
           </div>
         </div>
-        <div className="layouts" />
+        <div className="layouts">
+          <i className="icon icon-th-card" />
+          <i className="icon icon-th-list" />
+        </div>
       </div>
     );
   }

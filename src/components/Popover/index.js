@@ -15,13 +15,6 @@ export default class Popover extends Component {
     popoverY: 0
   };
 
-  static getDerivedStateFromProps(nextProps, preState) {
-    if (nextProps.visible !== undefined) {
-      return { visible: nextProps.visible };
-    }
-    return null;
-  }
-
   componentWillUnmount() {
     document.removeEventListener("click", this.hidePopover);
   }
@@ -30,12 +23,18 @@ export default class Popover extends Component {
     e.nativeEvent.stopImmediatePropagation();
   };
   showPopover = e => {
-    const rect = e.getBoundingClientRect();
-    console.log(rect)
+    let rect = e.getBoundingClientRect(),
+      orient = document.body.clientHeight - rect.top > 120 ? "top" : "bottom",
+      popoverX = rect.left + -14 + "px",
+      popoverY =
+        orient === "top"
+          ? rect.top + rect.height + 16 + "px"
+          : rect.top - rect.height - 130 + "px";
+    this.orient = orient;
     this.setState(preState => ({
       visible: true,
-      popoverX: rect.left + -14 + "px",
-      popoverY: rect.top + rect.height + 16 + "px"
+      popoverX: popoverX,
+      popoverY: popoverY
     }));
     document.addEventListener("click", this.hidePopover);
   };
@@ -59,8 +58,10 @@ export default class Popover extends Component {
     </div>
   );
   renderPopoverFooter = () => {
-    const { onOk, onCancel, okText, cancelText } = this.props;
-    return (
+    const { onOk, onCancel, okText, cancelText, footer } = this.props;
+    return Array.isArray(footer) ? (
+      <div>{footer.map(item => item)}</div>
+    ) : (
       <div>
         <Button type="primary" onClick={onOk}>
           {okText || "Ok"}
@@ -75,7 +76,12 @@ export default class Popover extends Component {
     const { visible, popoverX, popoverY } = this.state,
       { content } = this.props,
       display = visible ? "block" : "none",
-      arrow = <span className="arrow" />;
+      arrow = (
+        <span
+          className={this.orient === "top" ? "arrow-top" : "arrow-bottom"}
+        />
+      );
+
     return (
       <div className="cruise-popover-wrapper">
         <div

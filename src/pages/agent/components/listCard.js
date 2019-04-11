@@ -48,11 +48,49 @@ export default class extends Component {
   onChangeInput = val => {
     this.setState(preState => ({ inputResources: val }));
   };
+  getResourceContent = () => {
+    const { resources } = this.state.agentData;
+    if (resources.length > 6) {
+      return (
+        <div>
+          {this.getResourceTags(0, 6)}
+          <Popover
+            content={
+              <div className="agent-content-os-panel">
+                {this.getResourceTags(6, resources.length - 1)}
+              </div>
+            }
+            footer={[]}
+          >
+            <span className="more-resources-button">MORE</span>
+          </Popover>
+        </div>
+      );
+    } else {
+      return this.getResourceTags(0, resources.length - 1);
+    }
+  };
+  getResourceTags = (start, end) => {
+    const { resources } = this.state.agentData;
+    return resources.map((item, index) => {
+      if (!(index >= start && index < end)) return null;
+      return (
+        <Button
+          className="resource-button"
+          key={item}
+          onClick={() => this.handleDeleteResources(item)}
+        >
+          {item}
+          <i className="icon-trash" />
+        </Button>
+      );
+    });
+  };
   render() {
     const { agentData, inputResources } = this.state;
-    const { name, location, ip, os, status, resources } = agentData;
+    const { name, location, ip, os, status } = agentData;
     const addDiaContent = (
-      <div className="add-dialog-content">
+      <div className="agent-content-add-dialog">
         <p className="title">Separate multiple resource name with commas</p>
         <Input
           value={inputResources}
@@ -93,18 +131,7 @@ export default class extends Component {
                   <i className="icon-plus" />
                 </span>
               </Popover>
-              <div>
-                {resources.map(item => (
-                  <Button
-                    className="resource-button"
-                    key={item}
-                    onClick={() => this.handleDeleteResources(item)}
-                  >
-                    {item}
-                    <i className="icon-trash" />
-                  </Button>
-                ))}
-              </div>
+              <div>{this.getResourceContent()}</div>
             </div>
             <div className="operation-deny">
               <Button className="deny-button" type="primary">

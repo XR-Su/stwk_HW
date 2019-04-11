@@ -1,14 +1,11 @@
 .agent {
   .normalPageLayout;
-  display: flex;
-  flex-direction: column;
   height: 100%;
 
   .agent-header {
     display: flex;
     justify-content: space-between;
     .card {
-      padding: 10px 8px;
       width: 280px;
       height: 120px;
     }
@@ -17,6 +14,7 @@
       display: flex;
       overflow: hidden;
       justify-content: space-between;
+      padding: 14px 14px 18px 14px;
       .title {
         color: white;
         font: 18px bold;
@@ -26,10 +24,8 @@
         align-items: center;
         justify-content: center;
         font-size: 144px;
-        //margin-top: -30px;
-        margin-left: -50px;
+        margin-left: -20px;
         color: rgba(255, 255, 255, 0.2);
-
       }
       .icon-cog {
         transform-origin: center center;
@@ -39,7 +35,7 @@
         text-align: right;
         color: white;
         font-size: 45px;
-        padding-top: 45px;
+        padding-top: 40px;
       }
       @keyframes anim {
         from {
@@ -55,7 +51,7 @@
       display: flex;
       justify-content: space-between;
       background-color: white;
-      padding: 14px 0;
+      padding: 20px 0;
       .item {
         flex: 1;
         .title {
@@ -65,7 +61,7 @@
         .count {
           font-size: 20px;
           text-align: center;
-          margin-top: 26px;
+          margin-top: 38px;
         }
         &:first-child {
           .title {
@@ -76,11 +72,7 @@
     }
   }
   .agent-content {
-    display: flex;
-    //flex: 1;
-    flex-direction: column;
-    height: calc(~'100vh - 200px');
-    //height: 1px;
+    height: calc(~"100% - 120px");
   }
 }
 .agent-content-filter {
@@ -121,11 +113,22 @@
       }
     }
   }
+  .layouts {
+    display: flex;
+    align-items: center;
+    padding-right: 8px;
+    .icon {
+      cursor: pointer;
+      font-size: 20px;
+      margin-right: 14px;
+    }
+  }
 }
 .agent-content-list {
-  margin-top: 14px;
+  height: calc(~"100% - 50px");
   overflow-y: auto;
-  .agent-content-list-container{
+  .agent-content-list-container {
+    white-space: nowrap;
     .list-card {
       display: flex;
       width: 100%;
@@ -178,6 +181,7 @@
           align-items: center;
           justify-content: space-between;
           flex: 1;
+
           .button {
             display: flex;
             align-items: center;
@@ -194,12 +198,19 @@
               background-color: @BUTTON_COLOR;
               font-size: 18px;
               line-height: 26px;
+              &:hover {
+                background-color: @SUB_BLUE;
+              }
             }
             .resource-button {
               margin-left: 6px;
               .icon-trash {
                 margin-left: 4px;
               }
+            }
+            .more-resources-button {
+              color: @MAIN_BLUE;
+              margin-left: 10px;
             }
           }
           .operation-deny {
@@ -218,7 +229,7 @@
   }
 }
 
-.add-dialog-content {
+.agent-content-add-dialog {
   width: 570px;
   color: #aaa;
   .title {
@@ -230,5 +241,14 @@
     .cruise-input {
       color: @MAIN_BLUE;
     }
+  }
+}
+
+.agent-content-os-panel {
+  max-width: 200px;
+  max-height: 80px;
+  overflow-y: auto;
+  .resource-button {
+    margin: 3px;
   }
 }

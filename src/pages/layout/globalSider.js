@@ -12,17 +12,6 @@ export default class extends Component {
   render() {
     return (
       <div className="global-sider">
-        {/*<ul style={{ listStyleType: "none", padding: 0 }}>*/}
-        {/*<li>*/}
-        {/*<Link to="/">Home</Link>*/}
-        {/*</li>*/}
-        {/*<li>*/}
-        {/*<Link to="/bubblegum">Bubblegum</Link>*/}
-        {/*</li>*/}
-        {/*<li>*/}
-        {/*<Link to="/shoelaces">Shoelaces</Link>*/}
-        {/*</li>*/}
-        {/*</ul>*/}
         <Menu theme="dark">
           <Menu.Item key="dashboard" title={<i className="icon-dashboard" />}>
             <Link to="/dashbord">DASHBOARD</Link>
@@ -37,6 +26,9 @@ export default class extends Component {
             <Link to="/app/agent">HELP</Link>
           </Menu.Item>
         </Menu>
+        <div className="history-info">
+          <p className="title">History</p>
+        </div>
       </div>
     );
   }
