@@ -7,24 +7,18 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Menu } from "Components";
+import routes from "../../routes";
 
 export default class extends Component {
   render() {
     return (
       <div className="global-sider">
         <Menu theme="dark">
-          <Menu.Item key="dashboard" title={<i className="icon-dashboard" />}>
-            <Link to="/app/dashboard">DASHBOARD</Link>
-          </Menu.Item>
-          <Menu.Item key="agent" title={<i className="icon-sitemap" />}>
-            <Link to="/app/agent">AGENT</Link>
-          </Menu.Item>
-          <Menu.Item key="my_cruise" title={<i className="icon-boat" />}>
-            <Link to="/app/myCruise">MY CRUISE</Link>
-          </Menu.Item>
-          <Menu.Item key="help" title={<i className="icon-life-bouy" />}>
-            <Link to="/app/help">HELP</Link>
-          </Menu.Item>
+          {routes.map(route => (
+            <Menu.Item key={route.key} title={<i className={route.icon} />}>
+              <Link to={route.path}>{route.title}</Link>
+            </Menu.Item>
+          ))}
         </Menu>
         <div className="history-info">
           <p className="title">History</p>

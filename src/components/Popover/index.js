@@ -35,7 +35,7 @@ export default class Popover extends PureComponent {
    */
   getPopOrientation = e => {
     let rect = e.getBoundingClientRect(),
-      direct = document.body.clientHeight - rect.top > 140 ? "top" : "bottom",
+      direct = document.body.clientHeight - rect.top > 160 ? "top" : "bottom",
       popoverX = rect.left + -14 + "px",
       popoverY =
         direct === "top"

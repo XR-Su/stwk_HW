@@ -1,7 +1,7 @@
 {
   "name": "thoughworks_homework",
   "version": "1.0.0",
-  "description": "react tiny auto suggest component",
+  "description": "cruise management system",
   "main": "main.js",
   "files": [
     "dist"

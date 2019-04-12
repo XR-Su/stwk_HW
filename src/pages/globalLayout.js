@@ -9,10 +9,7 @@ import React, { Component, lazy, Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
 import Header from "./layout/globalHeader";
 import Sider from "./layout/globalSider";
-const Agent = lazy(() => import("./agent"));
-const Dashboard = lazy(() => import('./dashboard'));
-const MyCruise = lazy(() => import('./myCruise'));
-const Help = lazy(() => import('./help'));
+import routes from "../routes";
 
 export default class extends Component {
   render() {
@@ -24,10 +21,16 @@ export default class extends Component {
           <div className="global-content">
             <Suspense fallback={<div>loading</div>}>
               <Switch>
-                <Route path="/app/agent" component={props => <Agent {...props} />} />
-                <Route path="/app/dashboard" component={props => <Dashboard {...props} />} />
-                <Route path="/app/myCruise" component={props => <MyCruise {...props} />} />
-                <Route path="/app/help" component={props => <Help {...props} />} />
+                {routes.map(route => {
+                  const Component = route.component;
+                  return (
+                    <Route
+                      path={route.path}
+                      component={props => <Component {...props} />}
+                      key={route.key}
+                    />
+                  );
+                })}
               </Switch>
             </Suspense>
           </div>
