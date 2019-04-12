@@ -10,7 +10,8 @@ const config = {
   output: {
     path: path.resolve(__dirname, "../dist"),
     filename: "static/js/[name].[chunkhash:8].js",
-    chunkFilename: 'static/js/[name].[chunkhash:5].chunk.js'
+    chunkFilename: 'static/js/[name].[chunkhash:5].chunk.js',
+    publicPath: '/'
   },
   resolve: {
     alias: {

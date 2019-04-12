@@ -61,10 +61,7 @@ const config = {
           },
           {
             loader: "less-loader",
-            options: {
-              // strictMath: true,
-              // noIeCompat: true
-            }
+            options: {}
           }
         ]
       },

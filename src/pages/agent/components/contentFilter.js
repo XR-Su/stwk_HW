@@ -1,5 +1,5 @@
 /**
- * @Name:
+ * @Name: agent content filter
  * @Description:
  * @author RiSusss
  * @date 2019-04-09
@@ -7,7 +7,7 @@
 import React, { PureComponent } from "react";
 import { Input } from "Components";
 
-export default class extends PureComponent {
+class ContentFilter extends PureComponent {
   state = {
     cur: "All",
     filterOptions: ["All", "Physical", "Virtual"],
@@ -54,9 +54,11 @@ export default class extends PureComponent {
         </div>
         <div className="layouts">
           <i className="icon icon-th-card" />
-          <i className="icon icon-th-list" />
+          <i className="icon icon-th-list layout-active" />
         </div>
       </div>
     );
   }
 }
+
+export default ContentFilter;

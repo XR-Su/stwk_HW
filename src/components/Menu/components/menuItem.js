@@ -1,5 +1,5 @@
 /**
- * @Name:
+ * @Name: cruise Menu Item
  * @Description:
  * @author RiSusss
  * @date 2019/4/11

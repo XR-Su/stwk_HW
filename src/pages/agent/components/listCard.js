@@ -1,5 +1,5 @@
 /**
- * @Name:
+ * @Name: agent list card
  * @Description:
  * @author RiSusss
  * @date 2019-04-10
@@ -23,6 +23,10 @@ export default class extends PureComponent {
       inputResources: ""
     };
   }
+
+  /**
+   * add new resources
+   */
   handleAddResources = () => {
     const { agentData, inputResources } = this.state,
       resources = inputResources.split(","),
@@ -34,6 +38,11 @@ export default class extends PureComponent {
       this.setState({ agentData: body, inputResources: "" });
     });
   };
+
+  /**
+   * delete resource
+   * @param resource
+   */
   handleDeleteResources = resource => {
     console.log(resource);
     const { agentData } = this.state,
@@ -45,19 +54,29 @@ export default class extends PureComponent {
       this.setState({ agentData: body });
     });
   };
+
+  /**
+   * change resource input
+   * @param val
+   */
   onChangeInput = val => {
     this.setState(preState => ({ inputResources: val }));
   };
-  getResourceContent = () => {
+
+  /**
+   * get resources display dom
+   * @returns {*}
+   */
+  renderResourceContent = () => {
     const { resources } = this.state.agentData;
     if (resources.length > 6) {
       return (
         <div>
-          {this.getResourceTags(0, 6)}
+          {this.renderResourceTags(0, 6)}
           <Popover
             content={
               <div className="agent-content-os-panel">
-                {this.getResourceTags(6, resources.length - 1)}
+                {this.renderResourceTags(6, resources.length)}
               </div>
             }
             footer={[]}
@@ -67,10 +86,17 @@ export default class extends PureComponent {
         </div>
       );
     } else {
-      return this.getResourceTags(0, resources.length - 1);
+      return this.renderResourceTags(0, resources.length);
     }
   };
-  getResourceTags = (start, end) => {
+
+  /**
+   * render resource dom
+   * @param start
+   * @param end
+   * @returns {any[]}
+   */
+  renderResourceTags = (start, end) => {
     const { resources } = this.state.agentData;
     return resources.map((item, index) => {
       if (!(index >= start && index < end)) return null;
@@ -86,19 +112,32 @@ export default class extends PureComponent {
       );
     });
   };
+
+  /**
+   * render add-dialog content dom
+   * @returns {*}
+   */
+  renderAddDialogContent = () => {
+    const {inputResources} = this.state
+    return (
+        <div className="agent-content-add-dialog">
+          <p className="title">Separate multiple resource name with commas</p>
+          <Input
+              value={inputResources}
+              placeholder="Input value"
+              onChange={val => this.onChangeInput(val)}
+          />
+        </div>
+    )
+  };
+
+  /**
+   * render
+   * @returns {*}
+   */
   render() {
-    const { agentData, inputResources } = this.state;
+    const { agentData } = this.state;
     const { name, location, ip, os, status } = agentData;
-    const addDiaContent = (
-      <div className="agent-content-add-dialog">
-        <p className="title">Separate multiple resource name with commas</p>
-        <Input
-          value={inputResources}
-          placeholder="Input value"
-          onChange={val => this.onChangeInput(val)}
-        />
-      </div>
-    );
     return (
       <div className="list-card">
         <div className="os-icon">
@@ -123,7 +162,7 @@ export default class extends PureComponent {
           <div className="operation">
             <div className="operation-os">
               <Popover
-                content={addDiaContent}
+                content={this.renderAddDialogContent()}
                 okText="Add Resources"
                 onOk={this.handleAddResources}
               >
@@ -131,7 +170,7 @@ export default class extends PureComponent {
                   <i className="icon-plus" />
                 </span>
               </Popover>
-              <div>{this.getResourceContent()}</div>
+              <div>{this.renderResourceContent()}</div>
             </div>
             <div className="operation-deny">
               <Button className="deny-button" type="primary">

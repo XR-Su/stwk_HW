@@ -1,5 +1,5 @@
 /**
- * @Name:
+ * @Name: agent
  * @Description:
  * @author RiSusss
  * @date 2019/4/9
@@ -9,7 +9,7 @@ import React, { Component } from "react";
 import Header from "./components/agentHeader";
 import Content from "./components/agentContent";
 import { StoreProvider } from "./context/storeContext";
-import { GetAgentList, GetAgentOne, ChangeOneAgent } from "./api";
+import { GetAgentList } from "./api";
 
 export default class extends Component {
   state = {

@@ -1,5 +1,5 @@
 /**
- * @Name: 弹出对话框
+ * @Name: cruise popover
  * @Description: 这里原本是作为弹出框的基础组件，待改善
  * @author RiSusss
  * @date 2019-04-10
@@ -19,29 +19,58 @@ export default class Popover extends PureComponent {
     document.removeEventListener("click", this.hidePopover);
   }
 
+  /**
+   * click popover content
+   * @desc prevent propagation to document
+   * @param e
+   */
   handleClickPopover = e => {
     e.nativeEvent.stopImmediatePropagation();
   };
-  showPopover = e => {
+
+  /**
+   * get pop orientation info
+   * @param e
+   * @returns {{}|{}|*}
+   */
+  getPopOrientation = e => {
+    if (this.orient) return this.orient;
     let rect = e.getBoundingClientRect(),
-      orient = document.body.clientHeight - rect.top > 120 ? "top" : "bottom",
+      direct = document.body.clientHeight - rect.top > 120 ? "top" : "bottom",
       popoverX = rect.left + -14 + "px",
       popoverY =
-        orient === "top"
+        direct === "top"
           ? rect.top + rect.height + 16 + "px"
           : rect.top - rect.height - 130 + "px";
-    this.orient = orient;
+    return (this.orient = { ...{ direct, popoverX, popoverY } });
+  };
+
+  /**
+   * show popover
+   * @param e
+   */
+  showPopover = e => {
+    const orient = this.getPopOrientation(e);
     this.setState(preState => ({
       visible: true,
-      popoverX: popoverX,
-      popoverY: popoverY
+      popoverX: orient.popoverX,
+      popoverY: orient.popoverY
     }));
     document.addEventListener("click", this.hidePopover);
   };
+
+  /**
+   * hide popover
+   */
   hidePopover = () => {
     this.setState(preState => ({ visible: false }));
     document.removeEventListener("click", this.hidePopover);
   };
+
+  /**
+   * render child dom
+   * @returns {*}
+   */
   renderChild = () => {
     const child = this.props.children;
     const res = React.cloneElement(child, {
@@ -52,11 +81,21 @@ export default class Popover extends PureComponent {
     });
     return res;
   };
+
+  /**
+   * render popover header
+   * @returns {*}
+   */
   renderPopoverHeader = () => (
     <div className="header">
       <i className="icon-close" onClick={this.hidePopover} />
     </div>
   );
+
+  /**
+   * render popover footer
+   * @returns {*}
+   */
   renderPopoverFooter = () => {
     const { onOk, onCancel, okText, cancelText, footer } = this.props;
     return Array.isArray(footer) ? (
@@ -72,13 +111,22 @@ export default class Popover extends PureComponent {
       </div>
     );
   };
+
+  /**
+   * render popover
+   * @returns {*}
+   */
   renderPopover = () => {
     const { visible, popoverX, popoverY } = this.state,
       { content } = this.props,
       display = visible ? "block" : "none",
       arrow = (
         <span
-          className={this.orient === "top" ? "arrow-top" : "arrow-bottom"}
+          className={
+            (this.orient && this.orient.direct) === "top"
+              ? "arrow-top"
+              : "arrow-bottom"
+          }
         />
       );
 
