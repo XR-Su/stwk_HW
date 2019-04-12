@@ -27,6 +27,7 @@ const config = {
         use: {
           loader: "babel-loader",
           options: {
+            configFile: false,
             presets: ["@babel/preset-env"],
             plugins: [
               "dynamic-import-webpack"

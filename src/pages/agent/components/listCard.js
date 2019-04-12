@@ -64,6 +64,13 @@ export default class extends PureComponent {
   };
 
   /**
+   * hide popover before
+   */
+  onPopoverHide = () => {
+    this.setState(preState => ({ inputResources: "" }));
+  };
+
+  /**
    * get resources display dom
    * @returns {*}
    */
@@ -118,17 +125,17 @@ export default class extends PureComponent {
    * @returns {*}
    */
   renderAddDialogContent = () => {
-    const {inputResources} = this.state
+    const { inputResources } = this.state;
     return (
-        <div className="agent-content-add-dialog">
-          <p className="title">Separate multiple resource name with commas</p>
-          <Input
-              value={inputResources}
-              placeholder="Input value"
-              onChange={val => this.onChangeInput(val)}
-          />
-        </div>
-    )
+      <div className="agent-content-add-dialog">
+        <p className="title">Separate multiple resource name with commas</p>
+        <Input
+          value={inputResources}
+          placeholder="Input value"
+          onChange={val => this.onChangeInput(val)}
+        />
+      </div>
+    );
   };
 
   /**
@@ -165,6 +172,7 @@ export default class extends PureComponent {
                 content={this.renderAddDialogContent()}
                 okText="Add Resources"
                 onOk={this.handleAddResources}
+                onHide={this.onPopoverHide}
               >
                 <span className="add-button">
                   <i className="icon-plus" />

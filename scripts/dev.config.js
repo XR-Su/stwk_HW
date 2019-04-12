@@ -30,6 +30,7 @@ const config = {
         use: {
           loader: "babel-loader?cacheDirectory=true",
           options: {
+            configFile: false,
             presets: ["@babel/preset-env"],
             plugins: [
               "dynamic-import-webpack"

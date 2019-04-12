@@ -6,7 +6,7 @@
  */
 import React, { PureComponent, Fragment } from "react";
 import { createPortal } from "react-dom";
-import { Button } from "Components";
+import Button from "../Button";
 
 export default class Popover extends PureComponent {
   state = {
@@ -63,6 +63,8 @@ export default class Popover extends PureComponent {
    * hide popover
    */
   hidePopover = () => {
+    const { onHide } = this.props;
+    onHide();
     this.setState(preState => ({ visible: false }));
     document.removeEventListener("click", this.hidePopover);
   };
@@ -143,7 +145,7 @@ export default class Popover extends PureComponent {
         >
           {arrow}
           {this.renderPopoverHeader()}
-          {content}
+          {content || null}
           {this.renderPopoverFooter()}
         </div>
       </div>
@@ -160,5 +162,6 @@ export default class Popover extends PureComponent {
 }
 
 Popover.defaultProps = {
-  onOk: () => {}
+  onOk: () => {},
+  onHide: () => {}
 };
