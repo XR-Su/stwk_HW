@@ -25,7 +25,7 @@ const Input = memo(
       onChange(inputNode.value);
     };
     return (
-      <span className="cruise-input-wrapper">
+      <div className="cruise-input-wrapper">
         <span className="prefix">{prefix}</span>
         <input
           className="cruise-input"
@@ -37,7 +37,7 @@ const Input = memo(
           ref={node => (inputNode = node)}
         />
         <span className="suffix">{suffix}</span>
-      </span>
+      </div>
     );
   }
 );

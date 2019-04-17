@@ -5,23 +5,30 @@
  * @date 2019-04-09
  */
 import React, { PureComponent } from "react";
+import cs from "classnames";
 import { Input } from "Components";
 
 class ContentFilter extends PureComponent {
   state = {
     cur: "All",
     filterOptions: ["All", "Physical", "Virtual"],
-    searchText: ""
+    searchText: "",
+    layoutType: "list" // list grid
   };
-  handleChangeFilter = op => {
+  handleChangeFilter = type => {
     const { onFilter } = this.props;
-    this.setState(preState => ({ cur: op }));
-    onFilter({ type: op });
+    this.setState(preState => ({ cur: type }));
+    onFilter({ type: type });
+  };
+  handleChangeLayout = type => {
+    const { onChangeLayout } = this.props;
+    this.setState(preState => ({ layoutType: type }));
+    onChangeLayout(type);
   };
   onChangeSearch = val => {
     this.setState(preState => ({ searchText: val }));
   };
-  getFilterOptions = () => {
+  renderFilterOptions = () => {
     const { cur, filterOptions } = this.state;
     return filterOptions.map(item => {
       let className = item === cur ? "item-active" : "item";
@@ -38,11 +45,13 @@ class ContentFilter extends PureComponent {
   };
   render() {
     const { onFilter } = this.props,
-      { searchText } = this.state;
+      { searchText, layoutType } = this.state;
+    const isGrid = layoutType === "grid",
+      isList = layoutType === "list";
     return (
       <div className="agent-content-filter">
         <div className="filters">
-          <div>{this.getFilterOptions()}</div>
+          <div>{this.renderFilterOptions()}</div>
           <div className="search-filter">
             <Input
               value={searchText}
@@ -53,8 +62,14 @@ class ContentFilter extends PureComponent {
           </div>
         </div>
         <div className="layouts">
-          <i className="icon icon-th-card" />
-          <i className="icon icon-th-list layout-active" />
+          <i
+            className={cs("icon", "icon-th-card", { "layout-active": isGrid })}
+            onClick={() => this.handleChangeLayout("grid")}
+          />
+          <i
+            className={cs("icon", "icon-th-list", { "layout-active": isList })}
+            onClick={() => this.handleChangeLayout("list")}
+          />
         </div>
       </div>
     );

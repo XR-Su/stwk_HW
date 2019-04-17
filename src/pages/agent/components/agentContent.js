@@ -12,8 +12,14 @@ import withStore from "../hoc/withStore";
 class AgentContent extends Component {
   state = {
     type: "all",
-    id: ""
+    id: "",
+    layoutType: "list"
   };
+
+  /**
+   * get list data
+   * @returns {*}
+   */
   getList = () => {
     const { type, id } = this.state;
     const { agentList } = this.props.store;
@@ -28,13 +34,22 @@ class AgentContent extends Component {
   onFilter = val => {
     this.setState(preState => val);
   };
+
+  /**
+   * layout change
+   * @param layoutType
+   */
+  onChangeLayout = layoutType => {
+    this.setState(preState => ({ layoutType }));
+  };
   render() {
-    const { getList, onFilter } = this;
-    const {changeOneAgent} = this.props.store
+    const { getList, onFilter, onChangeLayout } = this;
+    const { changeOneAgent } = this.props.store;
+    const { layoutType } = this.state;
     return (
       <div className="agent-content">
-        <Filter {...{ onFilter }} />
-        <List list={getList()} {...{changeOneAgent}} />
+        <Filter {...{ onFilter, onChangeLayout }} />
+        <List list={getList()} {...{ changeOneAgent, layoutType }} />
       </div>
     );
   }

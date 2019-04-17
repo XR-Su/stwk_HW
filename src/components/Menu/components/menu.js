@@ -6,6 +6,7 @@
  */
 
 import React, { PureComponent } from "react";
+import cs from "classnames";
 import MenuItem from "./menuItem";
 
 class Menu extends PureComponent {
@@ -29,7 +30,9 @@ class Menu extends PureComponent {
   };
   render() {
     const theme = this.props.theme || "normal";
-    return <ul className={`cruise-menu ${theme}`}>{this.renderChildren()}</ul>;
+    return (
+      <ul className={cs("cruise-menu", theme)}>{this.renderChildren()}</ul>
+    );
   }
 }
 
