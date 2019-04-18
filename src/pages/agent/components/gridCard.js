@@ -17,6 +17,6 @@ export default class GridCard extends Component {
   render() {
     const { agentData } = this.state;
     const { name, location, ip, os, status } = agentData;
-    return <div className="grid-card">{name}</div>;
+    return <div className="agent-content-list-gridCard">{name}</div>;
   }
 }

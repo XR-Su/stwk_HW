@@ -88,7 +88,7 @@ export default class Popover extends PureComponent {
    * @returns {*}
    */
   renderPopoverHeader = () => (
-    <div className="header">
+    <div className="cruise-popover-header">
       <i className="icon-close" onClick={this.hidePopover} />
     </div>
   );
@@ -125,8 +125,8 @@ export default class Popover extends PureComponent {
         <span
           className={
             (this.orient && this.orient.direct) === "top"
-              ? "arrow-top"
-              : "arrow-bottom"
+              ? "cruise-popover-arrow__top"
+              : "cruise-popover-arrow__bottom"
           }
         />
       );

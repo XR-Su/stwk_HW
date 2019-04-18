@@ -6,7 +6,7 @@
  */
 import React, { memo } from "react";
 
-const HeaderViewCard = memo(
+const ViewCard = memo(
   ({ bgImg = "", bgColor = "white", title = "", count = 0, icon = "" }) => {
     return (
       <div className="agent-header-viewCard" style={{ backgroundColor: bgColor }}>
@@ -20,4 +20,4 @@ const HeaderViewCard = memo(
   }
 );
 
-export default HeaderViewCard;
+export default ViewCard;

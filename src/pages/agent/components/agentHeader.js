@@ -5,8 +5,8 @@
  * @date 2019-04-09
  */
 import React, { Component } from "react";
-import ViewCard from "./headerViewCard";
-import CountCard from "./headerCountCard";
+import ViewCard from "./viewCard";
+import CountCard from "./countCard";
 import withStore from "../hoc/withStore";
 
 class AgentHeader extends Component {

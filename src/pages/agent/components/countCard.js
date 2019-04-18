@@ -6,9 +6,9 @@
  */
 import React, { memo } from "react";
 
-const HeaderCountCard = memo(({ all, physical, virtual }) => {
+const CountCard = memo(({ all, physical, virtual }) => {
   return (
-    <div className="count-card">
+    <div className="agent-header-countCard">
       <div className="item">
         <p className="title">ALL</p>
         <p className="count">{all}</p>
@@ -25,4 +25,4 @@ const HeaderCountCard = memo(({ all, physical, virtual }) => {
   );
 });
 
-export default HeaderCountCard;
+export default CountCard;

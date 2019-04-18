@@ -31,10 +31,9 @@ class ContentFilter extends PureComponent {
   renderFilterOptions = () => {
     const { cur, filterOptions } = this.state;
     return filterOptions.map(item => {
-      let className = item === cur ? "item-active" : "item";
       return (
         <div
-          className={className}
+          className={cs("filter-type", { "filter-type-active": item === cur })}
           key={item}
           onClick={() => this.handleChangeFilter(item)}
         >
@@ -50,9 +49,9 @@ class ContentFilter extends PureComponent {
       isList = layoutType === "list";
     return (
       <div className="agent-content-filter">
-        <div className="filters">
+        <div className="agent-content-filter-conditions">
           <div>{this.renderFilterOptions()}</div>
-          <div className="search-filter">
+          <div className="filter-search">
             <Input
               value={searchText}
               onChange={this.onChangeSearch}
@@ -61,13 +60,13 @@ class ContentFilter extends PureComponent {
             />
           </div>
         </div>
-        <div className="layouts">
+        <div className="agent-content-filter-layouts">
           <i
-            className={cs("icon", "icon-th-card", { "layout-active": isGrid })}
+            className={cs("icon", "icon-th-card", { "filter-layout-active": isGrid })}
             onClick={() => this.handleChangeLayout("grid")}
           />
           <i
-            className={cs("icon", "icon-th-list", { "layout-active": isList })}
+            className={cs("icon", "icon-th-list", { "filter-layout-active": isList })}
             onClick={() => this.handleChangeLayout("list")}
           />
         </div>

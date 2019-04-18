@@ -14,8 +14,6 @@ class Menu extends PureComponent {
     cur: "agent"
   };
   onChangeCur = val => {
-    console.log("onchange");
-    console.log(val);
     this.setState(preState => ({ cur: val }));
   };
   renderChildren = () => {
@@ -31,7 +29,9 @@ class Menu extends PureComponent {
   render() {
     const theme = this.props.theme || "normal";
     return (
-      <ul className={cs("cruise-menu", theme)}>{this.renderChildren()}</ul>
+      <ul className={cs("cruise-menu", "cruise-menu__" + theme)}>
+        {this.renderChildren()}
+      </ul>
     );
   }
 }

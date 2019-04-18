@@ -6,14 +6,18 @@
  */
 
 import React, { memo } from "react";
+import cs from "classnames";
 
 const MenuItem = memo(
   ({ title = "", children = "", itemKey = "", cur, onChangeCur }) => {
-    const className =
-      itemKey === cur ? "cruise-menu-item item-active" : "cruise-menu-item";
     return (
-      <li className={className} onClick={() => onChangeCur(itemKey)}>
-        <span className="title">{title}</span>
+      <li
+        className={cs("cruise-menu-item", {
+          "cruise-menu-item__active": itemKey === cur
+        })}
+        onClick={() => onChangeCur(itemKey)}
+      >
+        <span className="cruise-menu-item-title">{title}</span>
         {children}
       </li>
     );

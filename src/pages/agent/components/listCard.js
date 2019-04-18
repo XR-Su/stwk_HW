@@ -146,12 +146,12 @@ export default class extends PureComponent {
     const { agentData } = this.state;
     const { name, location, ip, os, status } = agentData;
     return (
-      <div className="list-card">
-        <div className="os-icon">
-          <img className="image" src={icons[os]} alt="" />
+      <div className="agent-content-list-listCard">
+        <div className="listCard-osIcon">
+          <img className="listCard-osIcon-image" src={icons[os]} alt="" />
         </div>
-        <div className="detail">
-          <div className="info">
+        <div className="listCard-detail">
+          <div className="listCard-detail-info">
             <span className="item item-name">
               <i className="icon icon-desktop" />
               {name}
@@ -166,8 +166,8 @@ export default class extends PureComponent {
               {location}
             </span>
           </div>
-          <div className="operation">
-            <div className="operation-os">
+          <div className="listCard-detail-operation">
+            <div className="listCard-detail-operation-osTags">
               <Popover
                 content={this.renderAddDialogContent()}
                 okText="Add Resources"
@@ -180,7 +180,7 @@ export default class extends PureComponent {
               </Popover>
               <div>{this.renderResourceContent()}</div>
             </div>
-            <div className="operation-deny">
+            <div className="listCard-detail-operation-deny">
               <Button className="deny-button" type="primary">
                 <i className="icon-deny" />
                 Deny

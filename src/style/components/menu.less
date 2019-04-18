@@ -1,10 +1,10 @@
 .cruise-menu {
   padding-inline-start: 0;
   padding-left: 0;
-  &.normal {
+  &__normal {
     .cruise-menu-item-style(black, @SHALLOW_GRAY, black);
   }
-  &.dark {
+  &__dark {
     .cruise-menu-item-style;
   }
 }
@@ -15,14 +15,14 @@
     align-items: center;
     padding-left: 10px;
     list-style: none;
+    color: @text;
     height: 45px;
-    .title {
+    &-title {
       display: inline-block;
       text-align: center;
-      color: @text;
       width: 40px;
     }
-    a {
+    >a {
       text-decoration: none;
       color: @text;
       width: 100%;
@@ -31,10 +31,10 @@
     &:hover {
       background-color: @active;
     }
-    &.item-active {
+    &__active {
+      color: @activeText;
       background-color: @active;
-      .title,
-      a {
+      >a {
         color: @activeText;
       }
     }
