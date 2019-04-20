@@ -19,7 +19,7 @@ export default class extends Component {
         <div className="global-main">
           <Sider />
           <div className="global-content">
-            <Suspense fallback={<div>loading</div>}>
+            <Suspense fallback={<div>loading...</div>}>
               <Switch>
                 {routes.map(route => {
                   const Component = route.component;
