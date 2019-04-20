@@ -5,8 +5,6 @@
  * @date 2019-04-20
  */
 
-const getDashBoardList = state => {
+export const dashBoardListReducer = state => {
   return { ...state, list: [{ name: 1 }] };
 };
-
-export default getDashBoardList;

@@ -1,5 +1,5 @@
 /**
- * @Name:
+ * @Name: global header
  * @Description:
  * @author RiSusss
  * @date 2019-04-09
@@ -11,10 +11,10 @@ class GlobalHeader extends Component {
   render() {
     return (
       <div className="global-header">
-        <div className="container">
-          <div className="other" />
+        <div className="global-header-container">
+          <div className="global-header-other" />
           <div className="global-header-title">
-            <div className="logo" />
+            <div className="title-logo" />
           </div>
           <div className="global-header-user">
             <div className="user-info">

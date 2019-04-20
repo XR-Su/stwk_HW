@@ -6,8 +6,10 @@
  */
 import { combineReducers } from "redux";
 import dashboard from "Pages/dashboard/reducers";
+import app from "App/reducers"
 
-const reducerMap = {
+const handlersMap = {
+  app,
   dashboard
 };
-export default combineReducers(reducerMap);
+export default combineReducers(handlersMap);

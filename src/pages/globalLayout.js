@@ -5,10 +5,11 @@
  * @date 2019-04-09
  */
 
-import React, { Component, lazy, Suspense } from "react";
+import React, { Component, Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
 import Header from "./layout/globalHeader";
 import Sider from "./layout/globalSider";
+import { Notification } from "Components";
 import routes from "../routes";
 
 export default class extends Component {
@@ -35,6 +36,7 @@ export default class extends Component {
             </Suspense>
           </div>
         </div>
+        <Notification />
       </div>
     );
   }

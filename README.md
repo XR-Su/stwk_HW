@@ -48,7 +48,7 @@ Package the project
 |   |   +-- globalLayout.js
 |   +-- routes                              --- 路由信息
 |   +-- style                               --- 样式
-|   --- app.js                              --- 项目入口文件
+|   --- main.js                              --- 项目入口文件
 |   --- page.js                             --- 组件入口文件
 --- package.json                                    
 ```

@@ -6,7 +6,7 @@ const autoprefixer = require("autoprefixer");
 
 const config = {
   mode: "production",
-  entry: "./src/app.js",
+  entry: "./src/main.js",
   output: {
     path: path.resolve(__dirname, "../dist"),
     filename: "static/js/[name].[chunkhash:8].js",

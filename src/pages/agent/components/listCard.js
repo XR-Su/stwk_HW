@@ -28,12 +28,21 @@ export default class extends PureComponent {
    * add new resources
    */
   handleAddResources = () => {
-    const { agentData, inputResources } = this.state,
-      resources = inputResources.split(","),
-      body = {
-        ...agentData,
-        resources: [...agentData.resources, ...resources]
-      };
+    const { agentData, inputResources } = this.state;
+    let resources = inputResources.split(","),
+      body;
+
+    // filter null character or existed item
+    resources = resources.filter(
+      item =>
+        /\S/.test(item) &&
+        agentData.resources.every(existItem => !(item == existItem))
+    );
+    body = {
+      ...agentData,
+      resources: [...agentData.resources, ...resources]
+    };
+
     ChangeOneAgent(body.id, body).then(() => {
       this.setState({ agentData: body, inputResources: "" });
     });
@@ -44,12 +53,13 @@ export default class extends PureComponent {
    * @param resource
    */
   handleDeleteResources = resource => {
-    console.log(resource);
     const { agentData } = this.state,
       body = {
         ...agentData
       };
+
     body.resources.splice(body.resources.indexOf(resource), 1);
+
     ChangeOneAgent(body.id, body).then(() => {
       this.setState({ agentData: body });
     });
@@ -76,6 +86,7 @@ export default class extends PureComponent {
    */
   renderResourceContent = () => {
     const { resources } = this.state.agentData;
+
     if (resources.length > 6) {
       return (
         <div>
@@ -88,7 +99,7 @@ export default class extends PureComponent {
             }
             footer={[]}
           >
-            <span className="more-resources-button">MORE</span>
+            <span className="resources-more-button">MORE</span>
           </Popover>
         </div>
       );
@@ -105,6 +116,7 @@ export default class extends PureComponent {
    */
   renderResourceTags = (start, end) => {
     const { resources } = this.state.agentData;
+
     return resources.map((item, index) => {
       if (!(index >= start && index < end)) return null;
       return (
@@ -126,6 +138,7 @@ export default class extends PureComponent {
    */
   renderAddDialogContent = () => {
     const { inputResources } = this.state;
+
     return (
       <div className="agent-content-add-dialog">
         <p className="title">Separate multiple resource name with commas</p>
@@ -145,6 +158,7 @@ export default class extends PureComponent {
   render() {
     const { agentData } = this.state;
     const { name, location, ip, os, status } = agentData;
+
     return (
       <div className="agent-content-list-listCard">
         <div className="listCard-osIcon">

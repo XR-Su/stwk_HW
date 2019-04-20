@@ -9,7 +9,7 @@ const config = {
   entry: [
     "webpack-dev-server/client?http://localhost:8080",
     "webpack/hot/dev-server",
-    "./src/app.js"
+    "./src/main.js"
   ],
   output: {
     filename: "[name].js",
@@ -19,6 +19,7 @@ const config = {
   resolve: {
     alias: {
       Utils: path.resolve(__dirname, "../src/utils/"),
+      App: path.resolve(__dirname, "../src/app/"),
       Components: path.resolve(__dirname, "../src/components/"),
       Pages: path.resolve(__dirname, "../src/pages/"),
       Assets: path.resolve(__dirname, "../assets/")

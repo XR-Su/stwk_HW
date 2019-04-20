@@ -10,62 +10,61 @@
     border-bottom: 1px solid #ccc;
     background-color: white;
 
-    .container {
+    &-container {
       display: flex;
       justify-content: space-between;
       height: 55px;
       width: 1200px;
-
-      .other,
-      .global-header-title,
-      .global-header-user {
+    }
+    &-other,
+    &-title,
+    &-user {
+      display: flex;
+      flex: 1;
+    }
+    &-title {
+      justify-content: center;
+      .title-logo {
+        display: inline-block;
+        width: 60px;
+        height: 100%;
+        background: url("../../../assets/imgs/logo.svg") center no-repeat;
+        background-size: contain;
+      }
+    }
+    &-user {
+      align-items: center;
+      justify-content: flex-end;
+      .user-info {
         display: flex;
-        flex: 1;
-      }
-      .global-header-title {
-        justify-content: center;
-        .logo {
-          display: inline-block;
-          width: 60px;
-          height: 100%;
-          background: url("../../../assets/imgs/logo.svg") center no-repeat;
-          background-size: contain;
-        }
-      }
-      .global-header-user {
         align-items: center;
-        justify-content: flex-end;
-        .user-info {
-          display: flex;
-          align-items: center;
-          position: relative;
-          cursor: pointer;
-          .user-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 20px;
-            margin-right: 10px;
-          }
+        position: relative;
+        cursor: pointer;
+        .user-icon {
+          width: 40px;
+          height: 40px;
+          border-radius: 20px;
+          margin-right: 10px;
+        }
+        .user-info-panel {
+          position: absolute;
+          top: 50px;
+          right: 0px;
+          text-align: left;
+          background-color: white;
+          width: 160px;
+          max-height: 0;
+          transition: max-height 0.4s;
+          overflow: hidden;
+          box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .icon-angle-down {
+          font-size: 18px;
+          color: #aaa;
+        }
+        &:hover {
           .user-info-panel {
-            position: absolute;
-            top: 50px;
-            right: 0px;
-            text-align: left;
-            background-color: white;
-            width: 160px;
-            max-height: 0;
-            transition: max-height 0.4s;
-            overflow: hidden;
-            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
-          }
-          .icon-angle-down {
-            font-size: 18px;
-            color: #aaa;
-          }
-          &:hover {
-            .user-info-panel {
-              max-height: 130px;
-            }
+            max-height: 130px;
           }
         }
       }
