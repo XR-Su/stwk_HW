@@ -1,10 +1,18 @@
-const webpack = require("webpack");
-const WebpackDevServer = require("webpack-dev-server");
-const path = require("path");
-const htmlWebpackPlugin = require("html-webpack-plugin");
-const autoprefixer = require("autoprefixer");
+/**
+ * @Name: development webpack config
+ * @Description:
+ * @author RiSusss
+ * @date 2019-04-21
+ */
+const webpack = require("webpack"),
+  WebpackDevServer = require("webpack-dev-server"),
+  path = require("path"),
+  htmlWebpackPlugin = require("html-webpack-plugin"),
+  autoprefixer = require("autoprefixer");
+const { smart: smartMerge } = require("webpack-merge");
+const base = require("./base.config");
 
-const config = {
+const config = smartMerge(base, {
   mode: "development",
   entry: [
     "webpack-dev-server/client?http://localhost:8080",
@@ -14,16 +22,7 @@ const config = {
   output: {
     filename: "[name].js",
     path: path.resolve(__dirname, "../dist"),
-    chunkFilename: '[name].[chunkhash:5].chunk.js'
-  },
-  resolve: {
-    alias: {
-      Utils: path.resolve(__dirname, "../src/utils/"),
-      App: path.resolve(__dirname, "../src/app/"),
-      Components: path.resolve(__dirname, "../src/components/"),
-      Pages: path.resolve(__dirname, "../src/pages/"),
-      Assets: path.resolve(__dirname, "../assets/")
-    }
+    chunkFilename: "[name].[chunkhash:5].chunk.js"
   },
   module: {
     rules: [
@@ -34,23 +33,27 @@ const config = {
           loader: "babel-loader?cacheDirectory=true",
           options: {
             configFile: false,
-            presets: ["@babel/preset-env"],
+            presets: ["@babel/preset-env", "@babel/preset-react"],
             plugins: [
-              "dynamic-import-webpack"
+              "dynamic-import-webpack",
+              "@babel/plugin-proposal-class-properties"
             ]
           }
         }
       },
       {
         test: /\.css$/,
-        use: ["style-loader", {
-          loader: 'css-loader',
-          options: {
-            // modules: false,
-            // importLoaders: 1,
-            // localIdentName: '[name]_[local]_[hash:base64:5]'
-          },
-        },]
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              // modules: false,
+              // importLoaders: 1,
+              // localIdentName: '[name]_[local]_[hash:base64:5]'
+            }
+          }
+        ]
       },
       {
         test: /\.less$/,
@@ -92,7 +95,7 @@ const config = {
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ]
-};
+});
 
 const server = new WebpackDevServer(webpack(config), {
   hot: true,

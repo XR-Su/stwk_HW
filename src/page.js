@@ -12,7 +12,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import Login from './pages/login'
+import Login from "./pages/login";
 import Auth from "./routes/auth";
 import GlobalLayout from "./pages/globalLayout.js";
 
@@ -28,7 +28,10 @@ export default () => {
         <Route path="/login" component={Login} />
         <Auth>
           <Switch>
-            <Route path="/app" component={GlobalLayout} />
+            <Route
+              path="/app"
+              component={props => <GlobalLayout {...props} />}
+            />
           </Switch>
         </Auth>
       </Switch>

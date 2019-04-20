@@ -11,7 +11,7 @@ import { getDashboardList } from "./actions";
 import { updateNotification } from "App/actions";
 class Dashboard extends Component {
   componentDidMount() {
-    console.log(this.props);
+    // console.log(this.props);
   }
   render() {
     return (

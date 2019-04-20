@@ -7,12 +7,19 @@
 
 import React, { Component, Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import _isEmpty from "lodash/isEmpty";
 import Header from "./layout/globalHeader";
 import Sider from "./layout/globalSider";
 import { Notification } from "Components";
 import routes from "../routes";
 
-export default class extends Component {
+class GlobalLayout extends Component {
+  renderNotification = () => {
+    const { title, content, type } = this.props.notification;
+    if (_isEmpty(title) && _isEmpty(content)) return null;
+    return <Notification {...{ title, content, type }} />;
+  };
   render() {
     return (
       <div className="global-layout">
@@ -36,8 +43,16 @@ export default class extends Component {
             </Suspense>
           </div>
         </div>
-        <Notification />
+        {this.renderNotification()}
       </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    notification: state.app.notification
+  };
+};
+
+export default connect(mapStateToProps)(GlobalLayout);
