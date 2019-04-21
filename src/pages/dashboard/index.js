@@ -44,7 +44,7 @@ const mapDispatchToProps = dispatch => {
     getList: () => {
       dispatch(getDashboardList());
     },
-    setNotification: (notification) => {
+    setNotification: notification => {
       dispatch(updateNotification(notification));
     }
   };

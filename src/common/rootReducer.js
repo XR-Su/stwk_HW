@@ -6,7 +6,7 @@
  */
 import { combineReducers } from "redux";
 import dashboard from "Pages/dashboard/reducers";
-import app from "App/reducers"
+import app from "App/reducers";
 
 const handlersMap = {
   app,

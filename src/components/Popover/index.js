@@ -6,6 +6,7 @@
  */
 import React, { PureComponent, Fragment } from "react";
 import { createPortal } from "react-dom";
+import PropTypes from "prop-types";
 import Button from "../Button";
 
 export default class Popover extends PureComponent {
@@ -98,15 +99,31 @@ export default class Popover extends PureComponent {
    * @returns {*}
    */
   renderPopoverFooter = () => {
-    const { onOk, onCancel, okText, cancelText, footer } = this.props;
+    const {
+      onOk,
+      onCancel,
+      okText,
+      cancelText,
+      footer,
+      hideAfterOk,
+      hideAfterCancel
+    } = this.props;
+    const okFn = () => {
+      onOk();
+      if (hideAfterOk) this.hidePopover();
+    };
+    const cancelFn = () => {
+      onCancel();
+      if (hideAfterCancel) this.hidePopover();
+    };
     return Array.isArray(footer) ? (
       <div>{footer.map(item => item)}</div>
     ) : (
       <div>
-        <Button type="primary" onClick={onOk}>
+        <Button type="primary" onClick={okFn}>
           {okText || "Ok"}
         </Button>
-        <Button type="cancel" onClick={onCancel || this.hidePopover}>
+        <Button type="cancel" onClick={cancelFn}>
           {cancelText || "Cancel"}
         </Button>
       </div>
@@ -162,5 +179,16 @@ export default class Popover extends PureComponent {
 
 Popover.defaultProps = {
   onOk: () => {},
-  onHide: () => {}
+  onCancel: () => {},
+  onHide: () => {},
+  hideAfterOk: false,
+  hideAfterCancel: true
+};
+
+Popover.propTypes = {
+  onOk: PropTypes.func,
+  onCancel: PropTypes.func,
+  onHide: PropTypes.func,
+  hideAfterOk: PropTypes.bool,
+  hideAfterCancel: PropTypes.bool
 };

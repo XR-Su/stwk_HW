@@ -7,4 +7,4 @@
 
 export { default as GetAgentList } from "./GetAgentList";
 export { default as GetAgentOne } from "./GetAgentOne";
-export { default as ChangeOneAgent } from './ChangeOneAgent'
+export { default as ChangeOneAgent } from "./ChangeOneAgent";

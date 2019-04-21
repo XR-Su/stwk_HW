@@ -5,4 +5,4 @@
  * @date 2019/4/11
  */
 
-export {default as Menu} from "./components/menu";
+export { default as Menu } from "./components/menu";

@@ -62,11 +62,15 @@ class ContentFilter extends PureComponent {
         </div>
         <div className="agent-content-filter-layouts">
           <i
-            className={cs("icon", "icon-th-card", { "filter-layout-active": isGrid })}
+            className={cs("icon", "icon-th-card", {
+              "filter-layout-active": isGrid
+            })}
             onClick={() => this.handleChangeLayout("grid")}
           />
           <i
-            className={cs("icon", "icon-th-list", { "filter-layout-active": isList })}
+            className={cs("icon", "icon-th-list", {
+              "filter-layout-active": isList
+            })}
             onClick={() => this.handleChangeLayout("list")}
           />
         </div>

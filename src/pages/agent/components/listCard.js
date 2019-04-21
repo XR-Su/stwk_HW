@@ -187,6 +187,7 @@ export default class extends PureComponent {
                 okText="Add Resources"
                 onOk={this.handleAddResources}
                 onHide={this.onPopoverHide}
+                hideAfterOk={true}
               >
                 <span className="add-button">
                   <i className="icon-plus" />

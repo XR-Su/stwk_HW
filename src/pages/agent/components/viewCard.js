@@ -9,7 +9,10 @@ import React, { memo } from "react";
 const ViewCard = memo(
   ({ bgImg = "", bgColor = "white", title = "", count = 0, icon = "" }) => {
     return (
-      <div className="agent-header-viewCard" style={{ backgroundColor: bgColor }}>
+      <div
+        className="agent-header-viewCard"
+        style={{ backgroundColor: bgColor }}
+      >
         <span className="title">{title}</span>
         <span className="icon">
           <i className={icon} />

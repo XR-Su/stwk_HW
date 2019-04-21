@@ -5,12 +5,13 @@
  * @date 2019-04-10
  */
 
-export default () => new Promise(resolve => {
+export default () =>
+  new Promise(resolve => {
     fetch("http://localhost:3001/agents", {
-        method: "get"
+      method: "get"
     })
-        .then(res => res.json())
-        .then(data => {
-            resolve(data)
-        });
-});
+      .then(res => res.json())
+      .then(data => {
+        resolve(data);
+      });
+  });

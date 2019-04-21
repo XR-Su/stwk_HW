@@ -25,8 +25,14 @@ const ContentList = memo(({ list, changeOneAgent, layoutType }) => {
         })}
         {layoutType === "grid" ? (
           <Fragment>
-            <span className="grid-card" style={{opacity: 0}}/>
-            <span className="grid-card" style={{opacity: 0}}/>
+            <span
+              className="agent-content-list-gridCard"
+              style={{ opacity: 0 }}
+            />
+            <span
+              className="agent-content-list-gridCard"
+              style={{ opacity: 0 }}
+            />
           </Fragment>
         ) : null}
       </div>

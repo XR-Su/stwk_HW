@@ -11,4 +11,4 @@ const handlersMap = {
   UPDATE_NOTIFICATION: updateNotification
 };
 
-export default createReducer(handlersMap, {notification:{}});
+export default createReducer(handlersMap, { notification: {} });

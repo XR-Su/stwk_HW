@@ -11,6 +11,7 @@ export const getDashboardList = () => dispatch => {
       dispatch({
         type: "GET_DASHBOARD_LIST"
       });
+      resolve();
     }, 3000);
   });
 };
