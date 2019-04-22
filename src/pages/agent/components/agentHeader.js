@@ -10,6 +10,10 @@ import CountCard from "./countCard";
 import withStore from "../hoc/withStore";
 
 class AgentHeader extends Component {
+  /**
+   * get display data
+   * @returns {{}}
+   */
   getCardData = () => {
     const { agentList } = this.props.store;
     let buildingCount = 0,
@@ -42,6 +46,11 @@ class AgentHeader extends Component {
       ...{ buildingCount, idleCount, allCount, physicalCount, virtualCount }
     };
   };
+
+  /**
+   * render
+   * @returns {*}
+   */
   render() {
     const {
       buildingCount,

@@ -17,8 +17,6 @@ module.exports = {
     }
   },
   module: {
-    rules: [
-
-    ]
+    rules: []
   }
 };

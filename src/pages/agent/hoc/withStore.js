@@ -8,6 +8,8 @@
 import React from "react";
 import { StoreConsumer } from "../context/storeContext";
 
-export default Component => () => (
-  <StoreConsumer>{store => <Component store={store} />}</StoreConsumer>
+export default Component => props => (
+  <StoreConsumer>
+    {store => <Component store={store} {...props} />}
+  </StoreConsumer>
 );

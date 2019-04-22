@@ -31,6 +31,11 @@ class AgentContent extends Component {
         : res.filter(item => item.type === type.toLowerCase());
     return res;
   };
+
+  /**
+   * filter type change
+   * @param val
+   */
   onFilter = val => {
     this.setState(preState => val);
   };
@@ -42,6 +47,11 @@ class AgentContent extends Component {
   onChangeLayout = layoutType => {
     this.setState(preState => ({ layoutType }));
   };
+
+  /**
+   * render
+   * @returns {*}
+   */
   render() {
     const { getList, onFilter, onChangeLayout } = this;
     const { changeOneAgent } = this.props.store;

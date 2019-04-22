@@ -12,8 +12,8 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./common/rootReducer";
 import Page from "./page.js";
-import "./style/index.less";
 import "../assets/fonts/fonts.css";
+import "./style/index.less";
 import "react-app-polyfill/ie11";
 
 const middlewares = [thunk];

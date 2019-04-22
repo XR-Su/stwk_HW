@@ -15,19 +15,38 @@ class ContentFilter extends PureComponent {
     searchText: "",
     layoutType: "list" // list grid
   };
+  /**
+   * change filter type
+   * @param type
+   */
   handleChangeFilter = type => {
     const { onFilter } = this.props;
     this.setState(preState => ({ cur: type }));
     onFilter({ type: type });
   };
+
+  /**
+   * change layout type
+   * @param type
+   */
   handleChangeLayout = type => {
     const { onChangeLayout } = this.props;
     this.setState(preState => ({ layoutType: type }));
     onChangeLayout(type);
   };
+
+  /**
+   * search text change
+   * @param val
+   */
   onChangeSearch = val => {
     this.setState(preState => ({ searchText: val }));
   };
+
+  /**
+   * render filter options
+   * @returns {*[]}
+   */
   renderFilterOptions = () => {
     const { cur, filterOptions } = this.state;
     return filterOptions.map(item => {
@@ -42,6 +61,11 @@ class ContentFilter extends PureComponent {
       );
     });
   };
+
+  /**
+   * render
+   * @returns {*}
+   */
   render() {
     const { onFilter } = this.props,
       { searchText, layoutType } = this.state;

@@ -6,8 +6,16 @@
  */
 import React, { Component } from "react";
 import UserInfoPanel from "./userInfoPanel";
+import { connect } from "react-redux";
+import _isEmpty from "lodash/isEmpty";
+import { Newsboard } from "Components";
 
 class GlobalHeader extends Component {
+  renderNewsboard = () => {
+    const { title, content, type } = this.props.newsboard;
+    if (_isEmpty(title) && _isEmpty(content)) return null;
+    return <Newsboard {...{ title, content, type }} />;
+  };
   render() {
     return (
       <div className="global-header">
@@ -28,9 +36,17 @@ class GlobalHeader extends Component {
             </div>
           </div>
         </div>
+        {this.renderNewsboard()}
       </div>
     );
   }
 }
 
-export default GlobalHeader;
+// export default GlobalHeader;
+const mapStateToProps = state => {
+  return {
+    newsboard: state.app.newsboard
+  };
+};
+
+export default connect(mapStateToProps)(GlobalHeader);
