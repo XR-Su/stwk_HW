@@ -6,6 +6,7 @@
  */
 import React, { PureComponent } from "react";
 import { Popover, Input, Button } from "Components";
+import _remove from "lodash/remove";
 import windows from "Assets/os_icons/windows.png";
 import centos from "Assets/os_icons/cent_os.png";
 import debian from "Assets/os_icons/debin.png";
@@ -53,12 +54,12 @@ export default class extends PureComponent {
    * @param resource
    */
   handleDeleteResources = resource => {
-    const { agentData } = this.state,
+    let { agentData } = this.state,
       body = {
         ...agentData
       };
 
-    body.resources.splice(body.resources.indexOf(resource), 1);
+    _remove(body.resources, item => item == resource);
 
     ChangeOneAgent(body.id, body).then(() => {
       this.setState({ agentData: body });
