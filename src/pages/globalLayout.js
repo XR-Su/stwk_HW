@@ -11,14 +11,14 @@ import { connect } from "react-redux";
 import _isEmpty from "lodash/isEmpty";
 import Header from "./layout/globalHeader";
 import Sider from "./layout/globalSider";
-import { Notification } from "Components";
+import { Newsboard } from "Components";
 import routes from "../routes";
 
 class GlobalLayout extends Component {
-  renderNotification = () => {
-    const { title, content, type } = this.props.notification;
+  renderNewsboard = () => {
+    const { title, content, type } = this.props.newsboard;
     if (_isEmpty(title) && _isEmpty(content)) return null;
-    return <Notification {...{ title, content, type }} />;
+    return <Newsboard {...{ title, content, type }} />;
   };
   render() {
     return (
@@ -43,7 +43,7 @@ class GlobalLayout extends Component {
             </Suspense>
           </div>
         </div>
-        {this.renderNotification()}
+        {this.renderNewsboard()}
       </div>
     );
   }
@@ -51,7 +51,7 @@ class GlobalLayout extends Component {
 
 const mapStateToProps = state => {
   return {
-    notification: state.app.notification
+    newsboard: state.app.newsboard
   };
 };
 

@@ -5,11 +5,11 @@
  * @date 2019-04-20
  */
 
-export const updateNotification = (state, action) => {
-  const { title = "", content = "", type = "normal" } = action.notification;
+export const updateNewsboard = (state, action) => {
+  const { title = "", content = "", type = "normal" } = action.news;
   return {
     ...state,
-    notification: {
+    newsboard: {
       title,
       content,
       type

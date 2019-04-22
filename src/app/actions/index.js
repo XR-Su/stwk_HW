@@ -4,9 +4,9 @@
  * @author RiSusss
  * @date 2019-04-20
  */
-export const updateNotification = notification => {
+export const updateNewsboard = news => {
   return {
-    type: "UPDATE_NOTIFICATION",
-    notification
+    type: "UPDATE_NEWSBOARD",
+    news
   };
 };

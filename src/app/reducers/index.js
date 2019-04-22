@@ -5,10 +5,10 @@
  * @date 2019-04-20
  */
 import { createReducer } from "Utils";
-import { updateNotification } from "./notificationReducer";
+import { updateNewsboard } from "./newsboardReducer";
 
 const handlersMap = {
-  UPDATE_NOTIFICATION: updateNotification
+  UPDATE_NEWSBOARD: updateNewsboard
 };
 
-export default createReducer(handlersMap, { notification: {} });
+export default createReducer(handlersMap, { newsboard: {} });
