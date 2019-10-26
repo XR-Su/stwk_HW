@@ -28,11 +28,9 @@ const config = smartMerge(base, {
     rules: [
       {
         test: /\.js$/,
-        include: [
-          path.resolve(__dirname, '../src')
-        ],
+        include: [path.resolve(__dirname, "../src")],
         loader: "eslint-loader",
-        enforce: 'pre'
+        enforce: "pre"
       },
       {
         test: /\.js$/,
@@ -66,24 +64,40 @@ const config = smartMerge(base, {
       {
         test: /\.less$/,
         exclude: /node_modules/,
-        use: [
+        oneOf: [
           {
-            loader: "style-loader",
-            options: { singleton: true }
+            resourceQuery: /modules/,
+            use: [
+              {
+                loader: "style-loader",
+                options: { singleton: true }
+              },
+              {
+                loader: "css-loader",
+                options: {
+                  modules: true,
+                  importLoaders: 1,
+                  localIdentName: "[name]_[local]_[hash:base64:5]"
+                }
+              },
+              {
+                loader: "less-loader"
+              }
+            ]
           },
           {
-            loader: "css-loader"
-          },
-          {
-            loader: "postcss-loader",
-            options: {
-              plugins: () => [autoprefixer({ browsers: "last 5 versions" })],
-              sourceMap: true
-            }
-          },
-          {
-            loader: "less-loader",
-            options: {}
+            use: [
+              {
+                loader: "style-loader",
+                options: { singleton: true }
+              },
+              {
+                loader: "css-loader"
+              },
+              {
+                loader: "less-loader"
+              }
+            ]
           }
         ]
       },

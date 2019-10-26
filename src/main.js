@@ -14,6 +14,7 @@ import rootReducer from "./common/rootReducer";
 import Page from "./page.js";
 import "../assets/fonts/fonts.css";
 import "./style/index.less";
+import "./main.css";
 import "react-app-polyfill/ie11";
 
 const middlewares = [thunk];
